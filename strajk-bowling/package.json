@@ -36,7 +36,9 @@
     "vitest": "^1.6.0"
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "jest": {
     "transform": {
@@ -47,4 +49,3 @@
     ]
   }
 }
-

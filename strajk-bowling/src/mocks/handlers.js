@@ -1,4 +1,3 @@
-// src/mocks/handlers.js
 import { rest } from 'msw';
 
 export const handlers = [
@@ -11,6 +10,7 @@ export const handlers = [
         when,
         people,
         lanes,
+        shoes,
         id: '12345',
         price: 820,
       })

@@ -1,12 +1,27 @@
-// jest.setup.js
-import { server } from './src/mocks/server';
+import { afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+import { server } from './src/mocks/setup';
+import { TextEncoder, TextDecoder } from 'util';
 
-// Establish API mocking before all tests.
-beforeAll(() => server.listen());
+if (typeof global.TextEncoder === 'undefined') {
+  global.TextEncoder = TextEncoder;
+}
 
-// Reset any request handlers that we may add during the tests,
-// so they don't affect other tests.
-afterEach(() => server.resetHandlers());
+if (typeof global.TextDecoder === 'undefined') {
+  global.TextDecoder = TextDecoder;
+}
 
-// Clean up after the tests are finished.
-afterAll(() => server.close());
+afterEach(() => {
+  cleanup();
+});
+
+// Innan alla tester körs så starta och lyssna på servern
+beforeAll(() => {
+  server.listen();
+});
+
+// Efter alla tester körts så stäng ner servern
+afterAll(() => {
+  server.close();
+});
